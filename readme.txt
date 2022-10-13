@@ -10,7 +10,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
 == Description ==
 
-LianaAutomation Site Tracking is an integration plugin for a LianaAutomation marketing automation platform.
+LianaAutomation for Contact Form 7 is an integration plugin for a LianaAutomation marketing automation platform.
 
 = Create Automations for your WordPress site visitors =
 
@@ -40,7 +40,7 @@ LianaAutomation, there could be a conflict between LianaAutomation and an outdat
 
 = Where can I report bugs? =
 
-Report bugs on our [GitHub repository](https://github.com/LianaTechnologies/lianaautomation-sitetracking/issues).
+Report bugs on our [GitHub repository](https://github.com/LianaTechnologies/lianaautomation-contact-form-7/issues).
 
 You can also notify us via our support channels.
 
@@ -50,7 +50,7 @@ Request new features and extensions and vote on existing suggestions on our offi
 
 = LianaAutomation Site Tracking is awesome! Can I contribute? =
 
-Yes, you can! Join in on our [GitHub repository](https://github.com/LianaTechnologies/lianaautomation-sitetracking)
+Yes, you can! Join in on our [GitHub repository](https://github.com/LianaTechnologies/lianaautomation-contact-form-7)
 
 = Where can I find REST API documentation? =
 
@@ -81,4 +81,4 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.0.32 2022-09-22 = Initial public release
+= 1.0.32 2022-10-13 = Initial public release

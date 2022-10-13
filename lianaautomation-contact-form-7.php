@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       LianaAutomation - Contact Form 7
+ * Plugin Name:       LianaAutomation Contact Form 7
  * Description:       LianaAutomation for Contact Form 7
  * Version:           1.0.31
  * Requires at least: 5.2
