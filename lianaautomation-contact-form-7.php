@@ -33,5 +33,5 @@ require_once dirname( __FILE__ ) . '/includes/lianaautomation-wpcf7.php';
  * Conditionally include admin panel code
  */
 if ( is_admin() ) {
-	require_once dirname( __FILE__ ) . '/admin/lianaautomation-admin.php';
+	require_once dirname( __FILE__ ) . '/admin/class-lianaautomation-contactform7.php';
 }
