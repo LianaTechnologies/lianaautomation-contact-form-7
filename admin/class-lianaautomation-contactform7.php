@@ -24,35 +24,33 @@ class LianaAutomation_ContactForm7 {
 	public function __construct() {
 		add_action(
 			'admin_menu',
-			array( $this, 'lianaAutomationContactForm7AddPluginPage' )
+			array( $this, 'lianaautomation_contactform7_add_plugin_page' )
 		);
 
 		add_action(
 			'admin_init',
-			array( $this, 'lianaAutomationContactForm7PageInit' )
+			array( $this, 'lianaautomation_contactform7_page_init' )
 		);
 	}
 
 	/**
 	 * Add an admin page
 	 *
-	 * @return null
+	 * @return void
 	 */
-	public function lianaAutomationContactForm7AddPluginPage() {
+	public function lianaautomation_contactform7_add_plugin_page():void {
 		global $admin_page_hooks;
 
-		// error_log(print_r($admin_page_hooks, true));
-
-		// Only create the top level menu if it doesn't exist (via another plugin)
+		// Only create the top level menu if it doesn't exist.
 		if ( ! isset( $admin_page_hooks['lianaautomation'] ) ) {
 			add_menu_page(
-				'LianaAutomation', // page_title
-				'LianaAutomation', // menu_title
-				'manage_options', // capability
-				'lianaautomation', // menu_slug
-				array( $this, 'lianaAutomationContactForm7CreateAdminPage' ),
-				'dashicons-admin-settings', // icon_url
-				65 // position
+				'LianaAutomation',
+				'LianaAutomation',
+				'manage_options',
+				'lianaautomation',
+				array( $this, 'lianaautomation_contactform7_create_admin_page' ),
+				'dashicons-admin-settings',
+				65
 			);
 		}
 		add_submenu_page(
@@ -60,25 +58,24 @@ class LianaAutomation_ContactForm7 {
 			'Contact Form 7',
 			'Contact Form 7',
 			'manage_options',
-			'lianaautomationcontactform7',
-			array( $this, 'lianaAutomationContactForm7CreateAdminPage' ),
+			'lianaautomation-contactform7',
+			array( $this, 'lianaautomation_contactform7_create_admin_page' ),
 		);
 
-		// Remove the duplicate of the top level menu item from the sub menu
-		// to make things pretty.
+		/*
+		 * Remove the duplicate of the top level menu item from the sub menu to make things pretty.
+		 */
 		remove_submenu_page( 'lianaautomation', 'lianaautomation' );
-
 	}
 
 
 	/**
 	 * Construct an admin page
 	 *
-	 * @return null
+	 * @return void
 	 */
-	public function lianaAutomationContactForm7CreateAdminPage() {
-		$this->lianaautomation_contactform7_options
-			= get_option( 'lianaautomation_contactform7_options' ); ?>
+	public function lianaAutomationContactForm7CreateAdminPage():void {
+		$this->lianaautomation_contactform7_options = get_option( 'lianaautomation_contactform7_options' ); ?>
 		<div class="wrap">
 			<h2>LianaAutomation API Options for Contact Form 7 Tracking</h2>
 			<?php settings_errors(); ?>
@@ -96,74 +93,70 @@ class LianaAutomation_ContactForm7 {
 	/**
 	 * Init a Contact Form 7 admin page
 	 *
-	 * @return null
+	 * @return void
 	 */
-	public function lianaAutomationContactForm7PageInit() {
+	public function lianaautomation_contactform7_page_init():void {
 		register_setting(
-			'lianaautomation_contactform7_option_group', // option_group
-			'lianaautomation_contactform7_options', // option_name
-			array(
-				$this,
-				'lianaAutomationContactForm7Sanitize',
-			) // sanitize_callback
+			'lianaautomation_contactform7_option_group',
+			'lianaautomation_contactform7_options',
+			array( $this, 'lianaautomation_contactform7_sanitize' )
 		);
 
 		add_settings_section(
-			'lianaautomation_contactform7_section', // id
-			'', // empty section title text
-			array( $this, 'lianaAutomationContactForm7SectionInfo' ), // callback
-			'lianaautomation_contactform7_admin' // page
+			'lianaautomation_contactform7_section',
+			'',
+			array( $this, 'lianaautomation_contactform7_section_info' ),
+			'lianaautomation_contactform7_admin'
 		);
 
 		add_settings_field(
-			'lianaautomation_contactform7_url', // id
-			'Automation API URL', // title
-			array( $this, 'lianaAutomationContactForm7URLCallback' ), // callback
-			'lianaautomation_contactform7_admin', // page
-			'lianaautomation_contactform7_section' // section
+			'lianaautomation_contactform7_url',
+			'Automation API URL',
+			array( $this, 'lianaautomation_contactform7_url_callback' ),
+			'lianaautomation_contactform7_admin',
+			'lianaautomation_contactform7_section'
 		);
 
 		add_settings_field(
-			'lianaautomation_contactform7_realm', // id
-			'Automation Realm', // title
-			array( $this, 'lianaAutomationContactForm7RealmCallback' ), // callback
-			'lianaautomation_contactform7_admin', // page
-			'lianaautomation_contactform7_section' // section
+			'lianaautomation_contactform7_realm',
+			'Automation Realm',
+			array( $this, 'lianaautomation_contactform7_realm_callback' ),
+			'lianaautomation_contactform7_admin',
+			'lianaautomation_contactform7_section'
 		);
 
 		add_settings_field(
-			'lianaautomation_contactform7_user', // id
-			'Automation User', // title
-			array( $this, 'lianaAutomationContactForm7UserCallback' ), // callback
-			'lianaautomation_contactform7_admin', // page
-			'lianaautomation_contactform7_section' // section
+			'lianaautomation_contactform7_user',
+			'Automation User',
+			array( $this, 'lianaautomation_contactform7_user_callback' ),
+			'lianaautomation_contactform7_admin',
+			'lianaautomation_contactform7_section'
 		);
 
 		add_settings_field(
-			'lianaautomation_contactform7_key', // id
-			'Automation Secret Key', // title
-			array( $this, 'lianaAutomationContactForm7KeyCallback' ), // callback
-			'lianaautomation_contactform7_admin', // page
-			'lianaautomation_contactform7_section' // section
+			'lianaautomation_contactform7_key',
+			'Automation Secret Key',
+			array( $this, 'lianaautomation_contactform7_key_callback' ),
+			'lianaautomation_contactform7_admin',
+			'lianaautomation_contactform7_section'
 		);
 
 		add_settings_field(
-			'lianaautomation_contactform7_channel', // id
-			'Automation Channel ID', // title
-			array( $this, 'lianaAutomationContactForm7ChannelCallback' ), // callback
-			'lianaautomation_contactform7_admin', // page
-			'lianaautomation_contactform7_section' // section
+			'lianaautomation_contactform7_channel',
+			'Automation Channel ID',
+			array( $this, 'lianaautomation_contactform7_channel_callback' ),
+			'lianaautomation_contactform7_admin',
+			'lianaautomation_contactform7_section'
 		);
 
-		// Status check
+		// Status check.
 		add_settings_field(
-			'lianaautomation_contactform7_status_check', // id
-			'LianaAutomation Connection Check', // title
-			array( $this, 'lianaAutomationContactForm7ConnectionCheckCallback' ), // callback
-			'lianaautomation_contactform7_admin', // page
-			'lianaautomation_contactform7_section' // section
+			'lianaautomation_contactform7_status_check',
+			'LianaAutomation Connection Check',
+			array( $this, 'lianaautomation_contactform7_connection_check_callback' ),
+			'lianaautomation_contactform7_admin',
+			'lianaautomation_contactform7_section'
 		);
-
 	}
 
 	/**
@@ -173,7 +166,7 @@ class LianaAutomation_ContactForm7 {
 	 *
 	 * @return null
 	 */
-	public function lianaAutomationContactForm7Sanitize( $input ) {
+	public function lianaautomation_contactform7_sanitize( $input ) {
 		$sanitary_values = array();
 
 		if ( isset( $input['lianaautomation_url'] ) ) {
@@ -200,13 +193,16 @@ class LianaAutomation_ContactForm7 {
 	}
 
 	/**
-	 * Empty section info
+	 * Section info
 	 *
-	 * @return null
+	 * @return void
 	 */
-	public function lianaAutomationContactForm7SectionInfo() {
-		// Intentionally empty section here.
-		// Could be used to generate info text.
+	public function lianaautomation_contactform7_section_info():void {
+		// Generate info text section.
+		printf( '<h2>Important CCPA/GDPR privacy compliancy information</h2>' );
+		printf( '<p>By entering valid API credentials below, you enable this plugin to send personal information of your site visitors to Liana Technologies Oy.</p>' );
+		printf( '<p>In most cases, this plugin <b>must</b> be accompanied by a <i>consent management solution</i>.</p>' );
+		printf( '<p>If unsure, do not use this plugin.</p>' );
 	}
 
 	/**
