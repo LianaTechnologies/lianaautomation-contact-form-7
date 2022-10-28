@@ -1,4 +1,4 @@
-=== LianaAutomation Contact Form 7 ===
+=== LianaAutomation for Contact Form 7 ===
 Contributors: lianatechnologies, jaakkoperoliana, timopohjanvirtaliana
 Tags: automation, online store, ecommerce, e-commerce
 Requires at least: 5.8
