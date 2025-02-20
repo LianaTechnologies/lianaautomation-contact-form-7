@@ -86,4 +86,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
+= 1.0.33 2025-02-20 =
+* **Fix:** Set 'Cache-Control: no-cache, must-revalidate' header when creating liana_t cookie
+
 = 1.0.32 2022-10-13 = Initial public release
